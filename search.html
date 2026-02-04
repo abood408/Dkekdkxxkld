@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البحث - نخبة المتجر</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .search-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-header h1 {
+            margin-bottom: 1rem;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .search-box button {
+            padding: 0.75rem 1.5rem;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .search-results {
+            margin-bottom: 3rem;
+        }
+
+        .results-info {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: #ecf0f1;
+            border-radius: 8px;
+            color: #666;
+        }
+
+        .no-results h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid #bdc3c7;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            border-color: #e74c3c;
+        }
+
+        .product-image {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .product-card .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #e74c3c;
+            margin-bottom: 1rem;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .product-actions button {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .btn-add {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .btn-add:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-fav {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .btn-fav:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1>🛍️ نخبة المتجر</h1>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html">المنزل</a></li>
+                    <li><a href="about.html">حول</a></li>
+                    <li><a href="accessories.html">إكسسوارات</a></li>
+                    <li><a href="blog.html">مدونة</a></li>
+                    <li><a href="contact.html">الاتصال</a></li>
+                </ul>
+
+                <div class="nav-icons">
+                    <button class="icon-btn" id="searchBtn" title="بحث">🔍</button>
+                    <button class="icon-btn" id="favBtn" title="المفضلة">❤️</button>
+                    <button class="icon-btn" id="cartBtn" title="السلة">🛒</button>
+                    <button class="icon-btn" id="loginBtn" title="تسجيل الدخول">👤</button>
+                </div>
+
+                <button class="menu-toggle" id="menuToggle">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Header -->
+    <section class="search-header">
+        <div class="container">
+            <h1>نتائج البحث</h1>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="ابحث عن المنتجات...">
+                <button id="searchSubmit">بحث</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Results -->
+    <section class="container">
+        <div class="search-results">
+            <div class="results-info" id="resultsInfo"></div>
+            <div id="resultsContainer"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>خدمة لنا</h3>
+                    <ul>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                        <li><a href="#">سياسة الاسترجاع</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تابعنا</h3>
+                    <div class="social-links">
+                        <a href="#">Facebook</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 نخبة المتجر. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cartModal')">&times;</span>
+            <h2>السلة</h2>
+            <div id="cartItems"></div>
+            <div class="cart-total">
+                <h3>الإجمالي: <span id="cartTotal">0</span> ريال</h3>
+            </div>
+            <button class="btn btn-primary" onclick="checkout()">الدفع</button>
+        </div>
+    </div>
+
+    <div class="modal" id="favModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('favModal')">&times;</span>
+            <h2>المفضلة</h2>
+            <div id="favItems"></div>
+        </div>
+    </div>
+
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>تسجيل الدخول / التسجيل</h2>
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="switchTab('login')">تسجيل الدخول</button>
+                <button class="tab-btn" onclick="switchTab('register')">تسجيل جديد</button>
+            </div>
+            <div id="loginTab" class="tab-content active">
+                <input type="email" placeholder="البريد الإلكتروني">
+                <input type="password" placeholder="كلمة المرور">
+                <button class="btn btn-primary" onclick="login()">دخول</button>
+            </div>
+            <div id="registerTab" class="tab-content">
+                <input type="text" placeholder="الاسم الكامل">
+                <input type="email" placeholder="البريد الإلكتروني">
+                <input type="password" placeholder="كلمة المرور">
+                <button class="btn btn-primary" onclick="register()">تسجيل</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="search.js"></script>
+</body>
+</html>

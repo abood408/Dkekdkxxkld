@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حول - نخبة المتجر</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .about-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .about-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .about-text p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 300px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+
+        .values-section {
+            background: #ecf0f1;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .value-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .team-section {
+            margin-bottom: 3rem;
+        }
+
+        .team-section h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-member-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .team-member-info {
+            padding: 1.5rem;
+        }
+
+        .team-member-info h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member-info p {
+            color: #e74c3c;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1>🛍️ نخبة المتجر</h1>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html">المنزل</a></li>
+                    <li><a href="about.html" class="active">حول</a></li>
+                    <li><a href="accessories.html">إكسسوارات</a></li>
+                    <li><a href="blog.html">مدونة</a></li>
+                    <li><a href="contact.html">الاتصال</a></li>
+                </ul>
+
+                <div class="nav-icons">
+                    <button class="icon-btn" id="searchBtn" title="بحث">🔍</button>
+                    <button class="icon-btn" id="favBtn" title="المفضلة">❤️</button>
+                    <button class="icon-btn" id="cartBtn" title="السلة">🛒</button>
+                    <button class="icon-btn" id="loginBtn" title="تسجيل الدخول">👤</button>
+                </div>
+
+                <button class="menu-toggle" id="menuToggle">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Bar -->
+    <div class="search-container" id="searchContainer" style="display: none;">
+        <div class="container">
+            <input type="text" id="searchInput" placeholder="ابحث عن المنتجات...">
+            <button id="searchSubmit">بحث</button>
+        </div>
+    </div>
+
+    <!-- About Header -->
+    <section class="about-header">
+        <h1>عن نخبة المتجر</h1>
+        <p>رحلتنا نحو تقديم أفضل المنتجات والخدمات</p>
+    </section>
+
+    <!-- About Content -->
+    <section class="container">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>من نحن</h2>
+                <p>
+                    نخبة المتجر هي منصة تجارة إلكترونية رائدة تسعى لتقديم أفضل المنتجات من جميع الفئات بأسعار منافسة وجودة عالية.
+                </p>
+                <p>
+                    تأسسنا بهدف توفير تجربة تسوق سهلة وآمنة للعملاء، مع الحرص على تقديم خدمة عملاء متميزة وسريعة.
+                </p>
+                <p>
+                    نؤمن بأن التسوق الإلكتروني يجب أن يكون ممتعاً وموثوقاً، لذلك نعمل بجد لتحقيق هذا الهدف يومياً.
+                </p>
+            </div>
+            <div class="about-image">🎯</div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #2c3e50; font-size: 2rem;">قيمنا الأساسية</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">✨</div>
+                    <h3>الجودة</h3>
+                    <p>نختار أفضل المنتجات من أموثق الموردين</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">💰</div>
+                    <h3>الأسعار المنافسة</h3>
+                    <p>نقدم أفضل الأسعار في السوق</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🚚</div>
+                    <h3>التوصيل السريع</h3>
+                    <p>توصيل سريع وآمن إلى باب منزلك</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>خدمة العملاء</h3>
+                    <p>فريق متخصص جاهز لمساعدتك دائماً</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <h2>فريقنا</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-member-image">👨‍💼</div>
+                    <div class="team-member-info">
+                        <h3>amjad</h3>
+                        <p>المدير التنفيذي</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">👩‍💼</div>
+                    <div class="team-member-info">
+                        <h3>amjad</h3>
+                        <p>مدير العمليات</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">👨‍💻</div>
+                    <div class="team-member-info">
+                        <h3>amjad</h3>
+                        <p>مدير التكنولوجيا</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">👩‍💻</div>
+                    <div class="team-member-info">
+                        <h3>amjad</h3>
+                        <p>مدير خدمة العملاء</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>خدمة لنا</h3>
+                    <ul>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                        <li><a href="#">سياسة الاسترجاع</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تابعنا</h3>
+                    <div class="social-links">
+                        <a href="#">Facebook</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; amjad.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cartModal')">&times;</span>
+            <h2>السلة</h2>
+            <div id="cartItems"></div>
+            <div class="cart-total">
+                <h3>الإجمالي: <span id="cartTotal">0</span> ريال</h3>
+            </div>
+            <button class="btn btn-primary" onclick="checkout()">الدفع</button>
+        </div>
+    </div>
+
+    <div class="modal" id="favModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('favModal')">&times;</span>
+            <h2>المفضلة</h2>
+            <div id="favItems"></div>
+        </div>
+    </div>
+
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>تسجيل الدخول / التسجيل</h2>
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="switchTab('login')">تسجيل الدخول</button>
+                <button class="tab-btn" onclick="switchTab('register')">تسجيل جديد</button>
+            </div>
+            <div id="loginTab" class="tab-content active">
+                <input type="email" placeholder="البريد الإلكتروني">
+                <input type="password" placeholder="كلمة المرور">
+                <button class="btn btn-primary" onclick="login()">دخول</button>
+            </div>
+            <div id="registerTab" class="tab-content">
+                <input type="text" placeholder="الاسم الكامل">
+                <input type="email" placeholder="البريد الإلكتروني">
+                <input type="password" placeholder="كلمة المرور">
+                <button class="btn btn-primary" onclick="register()">تسجيل</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
